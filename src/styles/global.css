@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Nunito:wght@400;500;600;700;800;900&display=swap");
 
 :root {
+  color-scheme: light; /* NEW LINE: stops phone browser forcing dark mode */
+
   --purple: #8962a8;
   --purple-dark: #62447f;
   --purple-light: #eee3ff;

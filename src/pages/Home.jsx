@@ -156,7 +156,7 @@ export default function Home() {
 
             <div className="hero-photo-fallback">
               <span>💜</span>
-              <p>Add your favourite photo here</p>
+             
             </div>
 
             <div className="hero-photo-caption">

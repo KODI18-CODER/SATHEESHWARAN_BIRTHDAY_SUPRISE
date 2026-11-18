@@ -8,6 +8,7 @@ import "./styles/global.css";
 import "./styles/animations.css";
 import "./styles/components.css";
 import "./styles/responsive.css";
+import "./styles/home.css"; // NEW LINE (keep this last)
 
 // Find the root element in index.html
 const rootElement = document.getElementById("root");
