@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { unlockSecretDoor } from "../lib/supabase.js";
 import secretMessages from "../data/secretMessages.js";
+
+const SECRET_PASSWORD = "GHOST18";
 
 const doors = [
   { id: "door1", title: "Secret One", emoji: "💌" },
@@ -15,32 +16,27 @@ export default function SecretVault() {
   const [password, setPassword] = useState("");
   const [unlocked, setUnlocked] = useState([]);
   const [message, setMessage] = useState("");
-  const [loading, setLoading] = useState(false);
 
   const currentMessage = secretMessages.find(
     (item) => item.id === activeDoor
   );
 
-  const handleUnlock = async (event) => {
+  const handleUnlock = (event) => {
     event.preventDefault();
 
-    if (!activeDoor || !password.trim() || loading) return;
+    if (!activeDoor || !password.trim()) return;
 
-    setLoading(true);
-    setMessage("");
-
-    const result = await unlockSecretDoor(activeDoor, password);
-
-    setLoading(false);
-    setMessage(result.message);
-
-    if (result.success) {
+    if (password.trim().toUpperCase() === SECRET_PASSWORD) {
       setUnlocked((previous) =>
         previous.includes(activeDoor)
           ? previous
           : [...previous, activeDoor]
       );
+
       setPassword("");
+      setMessage("");
+    } else {
+      setMessage("Incorrect password! Try again 💜");
     }
   };
 
@@ -76,7 +72,9 @@ export default function SecretVault() {
               <span style={{ fontSize: "2.5rem" }}>
                 {isUnlocked ? "🔓" : door.emoji}
               </span>
+
               <strong>{door.title}</strong>
+
               <span>{isUnlocked ? "Unlocked!" : "Tap to open"}</span>
             </button>
           );
@@ -112,11 +110,15 @@ export default function SecretVault() {
                 <div style={{ fontSize: "3rem" }}>
                   {currentMessage.emoji}
                 </div>
+
                 <h2>{currentMessage.title}</h2>
+
                 <p>{currentMessage.message}</p>
+
                 <p style={{ marginTop: 15, color: "#8c69b5" }}>
                   {currentMessage.closing}
                 </p>
+
                 <button
                   className="primary-button"
                   style={{ marginTop: 20 }}
@@ -128,7 +130,9 @@ export default function SecretVault() {
             ) : (
               <>
                 <div style={{ fontSize: "3rem" }}>🔐</div>
+
                 <h2>Unlock Your Surprise</h2>
+
                 <p className="muted">
                   Enter the secret password to open this door.
                 </p>
@@ -147,9 +151,8 @@ export default function SecretVault() {
                   <button
                     className="primary-button"
                     type="submit"
-                    disabled={loading}
                   >
-                    {loading ? "Checking..." : "Unlock Door 💜"}
+                    Unlock Door 💜
                   </button>
                 </form>
 
