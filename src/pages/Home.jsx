@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import {
@@ -12,7 +11,6 @@ import {
   Sparkles,
   Gift,
   ArrowRight,
-  Star,
 } from "lucide-react";
 
 const surprises = [
@@ -153,22 +151,12 @@ export default function Home() {
                 e.currentTarget.style.display = "none";
               }}
             />
-
-            <div className="hero-photo-fallback">
-              <span>💜</span>
-             
-            </div>
-
-            <div className="hero-photo-caption">
-              <span>Our favourite person</span>
-              <Heart size={16} fill="currentColor" />
-            </div>
           </div>
 
           <div className="hero-photo-sticker">
             <div className="sticker-icon">🎀</div>
             <div>
-              <strong>23 & Beautiful</strong>
+              <strong>23 &amp; Beautiful</strong>
               <small>Another year of being YOU!</small>
             </div>
           </div>
